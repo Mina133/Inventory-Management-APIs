@@ -9,6 +9,7 @@ class Items (models.Model):
     Category = models.ForeignKey('Categories', on_delete=models.CASCADE)
     Date_Added = models.DateField(auto_now_add=True)
     Last_Update = models.DateField(auto_now=True)
+    low_stock_threshold = models.PositiveIntegerField(default=10)
 
     def __str__(self):
         return self.Name

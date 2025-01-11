@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api.views import itemsListCreateView, categoryListCreateView, ItemDetailsUpdateDestroyView, CategoryDetailsUpdateDestroyView
+from api.views import itemsListCreateView, categoryListCreateView, ItemDetailsUpdateDestroyView, CategoryDetailsUpdateDestroyView, inventory_levels, inventory_report, reorder_suggestions, get_item_by_barcode
 
 router = DefaultRouter()
 router.register(r'items', itemsListCreateView)
@@ -31,4 +31,7 @@ urlpatterns = [
     # Category CRUD operations
     path('api/category/', categoryListCreateView.as_view(), name='category-list-create'),  # List and Create
     path('api/category/<int:pk>/', CategoryDetailsUpdateDestroyView.as_view(), name='category-detail'),  # Retrieve, Update, Delete
+
+    path('api/inventory/' , inventory_levels, name='quantity-list'), 
+    path('api/inventory/report/', inventory_report, name='inventory-report'),
 ]
