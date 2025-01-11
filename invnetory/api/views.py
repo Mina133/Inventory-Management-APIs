@@ -87,7 +87,7 @@ def inventory_levels(request):
 # Signal for Low Stock Alerts
 @receiver(post_save, sender=Items)
 def check_low_stock(sender, instance, **kwargs):
-    if instance.quantity < instance.low_stock_threshold:
+    if instance.Quantity < instance.low_stock_threshold:
         send_mail(
             subject="Low Stock Alert",
             message=f"Item {instance.name} is low on stock. Only {instance.quantity} left!",

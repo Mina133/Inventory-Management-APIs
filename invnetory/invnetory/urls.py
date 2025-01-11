@@ -32,6 +32,6 @@ urlpatterns = [
     path('api/category/', categoryListCreateView.as_view(), name='category-list-create'),  # List and Create
     path('api/category/<int:pk>/', CategoryDetailsUpdateDestroyView.as_view(), name='category-detail'),  # Retrieve, Update, Delete
 
-    path('api/inventory/' , inventory_levels, name='quantity-list'), 
-    path('api/inventory/report/', inventory_report, name='inventory-report'),
+    path('api/item/level/' , inventory_levels, name='quantity-list'), 
+    path('api/item/report/', inventory_report, name='inventory-report'),
 ]
