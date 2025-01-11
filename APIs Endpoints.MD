@@ -3,7 +3,7 @@
 ## Inventory Item Management Endpoints
 
 ### 1. List/Create Inventory Items
-- **Path**: `/api/inventory/`
+- **Path**: `/api/item/`
 - **Method**: GET/POST
 - **Description**: Retrieve or create inventory items.
 - **Request Example (POST)**:
@@ -37,7 +37,7 @@
   ```
 
 ## 2. Retrieve/Update/Delete Inventory Item
-- **Path**: `/api/inventory/<id>/`
+- **Path**: `/api/item/<id>/`
 - **Method**: GET/PUT/DELETE
 - **Description**: Retrieve, update, or delete a specific inventory item.
 - **Request Example (PUT)**:
@@ -60,7 +60,7 @@
 ## Category Management Endpoints
 
 ### 1. List/Create Categories
-- **Path**: `/api/categories/`
+- **Path**: `/api/category/`
 - **Method**: GET/POST
 - **Description**: Retrieve or create categories.
 - **Request Example (POST)**:
@@ -78,7 +78,7 @@
   ```
 
 ### 2. Retrieve/Update/Delete Category
-- **Path**: `/api/categories/<id>/`
+- **Path**: `/api/category/<id>/`
 - **Method**: GET/PUT/DELETE
 - **Description**: Manage a specific category.
 
@@ -87,7 +87,7 @@
 ## Inventory Levels Endpoint
 
 ### 1. View Inventory Levels with Filters
-- **Path**: `/api/inventory/levels/`
+- **Path**: `/api/item/levels/`
 - **Method**: GET
 - **Description**: View inventory levels with optional filters.
 - **Query Parameters**:
