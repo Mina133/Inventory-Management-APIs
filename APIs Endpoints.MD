@@ -115,39 +115,24 @@
 
 ---
 
-## Inventory Change Log Endpoint
+## stores 
 
-### 1. View Inventory Logs
-- **Path**: `/api/logs/`
+### 1. View Stores
+- **Path**: `/api/store/`
 - **Method**: GET
-- **Description**: Retrieve the history of inventory changes.
+- **Description**: list the stores 
 - **Response Example**:
   ```json
-  [
-      {
-          "item": 1,
-          "user": 1,
-          "change_type": "Restock",
-          "change_quantity": 5,
-          "timestamp": "2025-01-08T12:34:56Z"
-      }
-  ]
-  ```
-## Reorder Suggestions Endpoint
-
-### 1. View Reorder Suggestions
-- **Path**: `/api/inventory/reorder/`
-- **Method**: GET
-- **Description**: Suggest items to restock based on low stock thresholds.
-- **Response Example**:
-  ```json
-  [
-      {
-          "name": "Laptop",
-          "quantity": 2,
-          "low_stock_threshold": 5
-      }
-  ]
+ [
+    {
+        "id": 1,
+        "Name": "Store 1",
+        "Location": "Luxor",
+        "staff_members": [
+            1
+        ]
+    }
+]
   ```
 
 ---
@@ -169,37 +154,6 @@
 
 ---
 
-## Authentication Endpoints
-
-### 1. Obtain JWT Token
-- **Path**: `/api/token/`
-- **Method**: POST
-- **Description**: Retrieve JWT token for user authentication.
-- **Request Parameters**:
-  - `username` (string, required)
-  - `password` (string, required)
-- **Response**:
-  ```json
-  {
-      "access": "<access_token>",
-      "refresh": "<refresh_token>"
-  }
-  ```
-
-### 2. Refresh JWT Token
-- **Path**: `/api/token/refresh/`
-- **Method**: POST
-- **Description**: Refresh the access token using the refresh token.
-- **Request Parameters**:
-  - `refresh` (string, required)
-- **Response**:
-  ```json
-  {
-      "access": "<new_access_token>"
-  }
-  ```
-
----
 
 ## User Management Endpoints
 
