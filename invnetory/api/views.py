@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .serializers import itemsSerializer, categorySerializer
+from .serializers import itemsSerializer, categorySerializer, StoresSerializer
 from rest_framework import viewsets
-from .models import Items, Categories
+from .models import Items, Categories, Store
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -94,3 +94,14 @@ def check_low_stock(sender, instance, **kwargs):
             from_email="admin@inventory.com",
             recipient_list=[instance.user.email],
         )
+
+
+class StoresListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Store.objects.all()
+    serializer_class = StoresSerializer
+
+class StoreDetailsUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Store.objects.all()
+    serializer_class = StoresSerializer

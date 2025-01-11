@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api.views import itemsListCreateView, categoryListCreateView, ItemDetailsUpdateDestroyView, CategoryDetailsUpdateDestroyView, inventory_levels, inventory_report, reorder_suggestions, get_item_by_barcode
+from api.views import itemsListCreateView, categoryListCreateView, ItemDetailsUpdateDestroyView, CategoryDetailsUpdateDestroyView, inventory_levels, inventory_report, reorder_suggestions, get_item_by_barcode, StoresListCreateView, StoreDetailsUpdateDestroyView
 
 router = DefaultRouter()
 router.register(r'items', itemsListCreateView)
 router.register(r'category', categoryListCreateView)
+router.register(r'stores', StoresListCreateView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +36,9 @@ urlpatterns = [
 
     path('api/item/level/' , inventory_levels, name='quantity-list'), 
     path('api/item/report/', inventory_report, name='inventory-report'),
+
+    path('api/stores/', StoresListCreateView.as_view() , name='Stores'),
+    path('api/stores/<int:pk>/', StoreDetailsUpdateDestroyView.as_view(), name='store-detail'),  # Retrieve, Update, Delete
+
+    
 ]
