@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .serializers import itemsSerializer, categorySerializer, StoresSerializer
 from rest_framework import viewsets
 from .models import Items, Categories, Store
+from user.models import CustomUser
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -59,7 +60,7 @@ def get_item_by_barcode(request, barcode):
 
 @api_view(['GET'])
 def reorder_suggestions(request):
-    low_stock_items = Items.objects.filter(quantity__lt=models.F('low_stock_threshold'))
+    low_stock_items = Items.objects.filter(Quantity__lt=models.F('low_stock_threshold'))
     serializer = itemsSerializer(low_stock_items, many=True)
     return Response(serializer.data)
 
@@ -73,7 +74,7 @@ def inventory_levels(request):
     queryset = Items.objects.all()
 
     if category:
-        queryset = queryset.filter(category__name=category)
+        queryset = queryset.filter(category__Name=category)
     if price_min:
         queryset = queryset.filter(price__gte=price_min)
     if price_max:
@@ -88,14 +89,19 @@ def inventory_levels(request):
 @receiver(post_save, sender=Items)
 def check_low_stock(sender, instance, **kwargs):
     if instance.Quantity < instance.low_stock_threshold:
-        send_mail(
-            subject="Low Stock Alert",
-            message=f"Item {instance.name} is low on stock. Only {instance.quantity} left!",
-            from_email="admin@inventory.com",
-            recipient_list=[instance.user.email],
-        )
+        # Retrieve all staff members associated with the store
+        staff_members = instance.store.Staff_members.all()
 
+        # Collect email addresses of users related to the staff members
+        recipient_emails = [staff.user.email for staff in staff_members if staff.user.email]
 
+        if recipient_emails:  # Ensure there are recipients before sending the email
+            send_mail(
+                subject="Low Stock Alert",
+                message=f"Item {instance.Name} is low on stock. Only {instance.Quantity} left!",
+                from_email="admin@inventory.com",
+                recipient_list=recipient_emails,
+            )
 class StoresListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Store.objects.all()

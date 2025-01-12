@@ -12,6 +12,8 @@ class Items (models.Model):
     low_stock_threshold = models.PositiveIntegerField(default=10)
 
     store  = models.ForeignKey('Store', on_delete=models.CASCADE)
+    barcode = models.CharField(max_length=100, unique=True)
+
 
     def __str__(self):
         return self.Name
@@ -27,11 +29,13 @@ class Store(models.Model):
     Name = models.CharField(max_length=100, default='Store {}'.format(Number_of_stores+1))
     Location = models.CharField(max_length=100)
 
-    staff_members = models.ManyToManyField('staff_member')
+    Staff_members = models.ManyToManyField('staff_member')
+
     def __str__(self):
         return self.Name
     
 class staff_member(models.Model):
+    user = models.ForeignKey('user.CustomUser', on_delete=models.CASCADE)
     Name = models.CharField(max_length=100, default='John Doe')
     Position = models.CharField(max_length=100, default='Manager')
     def __str__(self):
