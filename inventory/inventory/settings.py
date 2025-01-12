@@ -86,8 +86,8 @@ DATABASES = {
             'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-database_url =os.environ.get('DATABASE_URL')
-DATABASES['default'] = dj_database_url.parse(database_url)
+# database_url =os.environ.get('DATABASE_URL')
+# DATABASES['default'] = dj_database_url.parse(database_url)
 
 # postgresql://inventorydb_at3q_user:Wi9MGDjTbn3mFH829AnqJgfcSFW9as1a@dpg-cu229iggph6c73emcg8g-a.oregon-postgres.render.com/inventorydb_at3q
 
