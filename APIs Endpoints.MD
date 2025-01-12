@@ -123,16 +123,16 @@
 - **Description**: list the stores 
 - **Response Example**:
   ```json
- [
-    {
-        "id": 1,
-        "Name": "Store 1",
-        "Location": "Luxor",
-        "staff_members": [
-            1
-        ]
-    }
-]
+   [
+      {
+          "id": 1,
+          "Name": "Store 1",
+          "Location": "Luxor",
+          "staff_members": [
+              1
+          ]
+      }
+  ]
   ```
 
 ---
