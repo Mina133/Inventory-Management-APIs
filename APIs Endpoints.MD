@@ -140,7 +140,7 @@
 ## Inventory Report Endpoint
 
 ### 1. Generate Inventory Report
-- **Path**: `/api/report/`
+- **Path**: `/api/item/report/`
 - **Method**: GET
 - **Description**: Generate a report of total inventory value and low stock items.
 - **Response Example**:
